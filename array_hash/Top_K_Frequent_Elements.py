@@ -4,13 +4,10 @@ class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         result = dict()
         for value in nums:
-            if result.get(value, 0) == 0:
-                result[value] = 1
-            else:
-                result[value] += 1
+            result[value] = 1 + result.get(value, 0)
         arr = Solution.insertion_sort(list(result.items()))
         final = list()
-        if len(arr) < k:
+        if len(arr) < k:    
             k = len(arr)
             for _ in range(k):
                 final.append(arr[_][0])
